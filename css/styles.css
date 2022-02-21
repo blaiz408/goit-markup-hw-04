@@ -190,6 +190,13 @@ address {
 }
 /* HERO */
 .hero {
+  background-color: #2f303a;
+  background-image: linear-gradient(
+      rgba(47, 48, 58, 0.4),
+      rgba(47, 48, 58, 0.4)
+    ),
+    url(../img/bg.jpg);
+  background-repeat: no-repeat;
   padding-top: 200px;
   padding-bottom: 200px;
   background-color: #2f303a;
@@ -203,7 +210,7 @@ address {
 .main-tittle {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   max-width: 696px;
   font-family: var(--primary-font-family);
   font-style: normal;
