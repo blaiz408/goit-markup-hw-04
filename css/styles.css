@@ -104,9 +104,11 @@ address {
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.1);
   color: #afb1b8;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .social-list-icon {
   fill: currentColor;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .social-list-link:hover,
 .social-list-link:focus {
@@ -169,15 +171,26 @@ address {
   font-weight: 500;
   line-height: 1.14;
   letter-spacing: 0.02em;
+  position: relative;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.active {
-  color: var(--accent-color);
-}
+
 .nav-list-link:hover,
 .nav-list-link:focus,
 .active-page {
   color: var(--accent-color);
 }
+.active-page::after {
+  display: block;
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--accent-color);
+  bottom: 0;
+}
+
 .contact-list {
   display: flex;
   margin-left: auto;
@@ -273,7 +286,22 @@ address {
   text-align: center;
   color: var(--secondary-text-color-theme-light);
 }
-
+.service-list-part {
+  position: relative;
+}
+.service-list-description {
+  display: flex;
+  color: var(--primary-text-color-theme-dark);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  line-height: 1.14;
+  background-color: rgba(47, 48, 58, 0.8);
+  align-items: center;
+  justify-content: center;
+}
 /* TEAM */
 .team {
   font-family: var(--primary-font-family);
@@ -314,6 +342,8 @@ address {
   height: 92px;
   border: 1px solid #afb1b8;
   border-radius: 4px;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .clients-icon {
   fill: #afb1b8;
@@ -350,6 +380,7 @@ address {
   font-family: var(--primary-font-family);
   font-style: normal;
   color: var(--primary-text-color-theme-dark);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .address-place:hover,
 :focus {
@@ -360,6 +391,7 @@ address {
   font-style: normal;
   line-height: 1.81;
   color: var(--secondary-text-color-theme-dark);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .address-list-link:hover,
 :focus {
@@ -401,6 +433,8 @@ address {
   background: #f5f4fa;
   border-radius: 4px;
   border: none;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .portfolio-button-filter:hover,
 .portfolio-button-filter:focus,
@@ -412,6 +446,34 @@ address {
 }
 
 /* PROJECTS */
+.project-list-item-overlay {
+  position: relative;
+  overflow: hidden;
+}
+.project-overlay-description {
+  color: var(--primary-text-color-theme-dark);
+  background-color: rgba(33, 150, 243, 0.9);
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 24px;
+  padding-left: 24px;
+  font-size: 18px;
+  line-height: 1.55;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.project-list-link:hover .project-overlay-description,
+.project-list-link:focus .project-overlay-description {
+  transform: translateY(0%);
+}
 .project-description {
   padding-top: 20px;
   padding-right: 24px;
@@ -435,9 +497,49 @@ address {
 }
 .project-list-link {
   display: block;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .project-list-link:hover,
 .project-list-link:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: opacity 500ms linear, visibility 500ms linear;
+}
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 528px;
+  height: 580px;
+  background-color: #ffffff;
+}
+.modal-close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
 }
